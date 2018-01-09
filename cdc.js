@@ -8,6 +8,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/produtos', function(request, response) {
+    const produtos = ['livros', 'cursos']
     response.render('produtos/lista', { produtos: produtos });
 });
 
