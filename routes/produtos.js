@@ -9,6 +9,16 @@ const produtos = (app) => {
         })
     })
 
+    app.post('/produtos', (request, response) => {
+        const produtosDAO = new ProdutosDAO(connection)
+        const produto = request.body
+        produtosDAO.salva(produto, (err) => {
+            if (err)
+                response.send(err)
+            response.send(produto)
+        })
+    })
+
     app.get('/produtos/cadastrar', (request, response) => {
         response.render('produtos/form')
     })
