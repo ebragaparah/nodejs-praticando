@@ -3,7 +3,7 @@
     <!-- FINAL NAV -->
     <div>
         <div class ="container min-container">
-            <h2 class="basic-title">Listagem de livros</h2>
+            <h2 class="basic-title">Produto <%= produto.id %></h2>
             <div class="well">
                 <table class="table table-condensed table-bordered table-striped table-hover">
                     <thead>
@@ -14,13 +14,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <% produtos.map((produto) => { %>
-                            <tr>
-                                <td><%= produto.titulo %></td>
-                                <td><%= produto.preco %></td>
-                                <td><%= produto.descricao %></td>
-                            </tr>
-                        <% }) %>
+                        <tr>
+                            <td><%= produto.titulo %></td>
+                            <td><%= produto.preco %></td>
+                            <td><%= produto.descricao %></td>
+                        </tr>
                     </tbody>
                 </table>
                 <a href="/produtos/form" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Novo livro</a>
