@@ -9,6 +9,10 @@ const produtos = (app) => {
         })
     })
 
+    app.get('/produtos/cadastrar', (request, response) => {
+        response.render('produtos/form')
+    })
+
     app.get('/produtos/:id', (request, response) => {
         const produtosDAO = new ProdutosDAO(connection)
         produtosDAO.mostra(request.params.id, (err, livro) => {
