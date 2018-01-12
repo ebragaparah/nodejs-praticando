@@ -18,4 +18,4 @@ class ProdutosDAO {
     }
 }
 
-module.exports = ProdutosDAO
+module.exports = () => ProdutosDAO

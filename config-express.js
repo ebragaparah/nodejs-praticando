@@ -10,7 +10,10 @@ app.use(express.static('./public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(expressValidator())
 
-load('routes').then('infra').into(app)
+load('routes')
+    .then('infra')
+    .then('dao')
+    .into(app)
 
 app.use((request, response, next) => {
     response.status(404).send(`Erro 404 da pagina ${request.originalUrl}`)
