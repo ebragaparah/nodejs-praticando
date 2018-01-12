@@ -12,11 +12,19 @@ const produtos = (app) => {
     app.post('/produtos', (request, response) => {
         const produtosDAO = new ProdutosDAO(connection)
         const produto = request.body
-        produtosDAO.salva(produto, (err) => {
-            if (err)
-                response.send(err)
-            response.send(produto)
-        })
+
+        request.assert('titulo', 'Título não pode ser vazio').notEmpty()
+        request.assert('preco', 'Preço precisa ser float').isFloat()
+
+        const errors = request.validationErrors()
+
+        if (errors) {
+            response.send(errors)
+        } else {
+            produtosDAO.salva(produto, (err) => {
+                response.redirect('/produtos')
+            })
+        }
     })
 
     app.get('/produtos/cadastrar', (request, response) => {
@@ -26,9 +34,10 @@ const produtos = (app) => {
     app.get('/produtos/:id', (request, response) => {
         const produtosDAO = new ProdutosDAO(connection)
         produtosDAO.mostra(request.params.id, (err, livro) => {
-            response.render('produtos/mostra', { produto: livro[0] })
+            response.render('produtos/mostra', { produto: livro.shift() })
         })
     })
+
 }
 
 module.exports = produtos

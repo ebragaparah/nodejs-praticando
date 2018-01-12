@@ -1,10 +1,13 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const expressValidator = require('express-validator')
+
 app.set('view engine', 'ejs')
 app.use(express.static('./public'))
 
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(expressValidator())
 
 require('./routes/home')(app)
 require('./routes/produtos')(app)
