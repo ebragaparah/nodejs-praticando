@@ -10,4 +10,4 @@ const connectionFactory = () => {
     return mysql.createConnection(connnectionParams)
 }
 
-module.exports = connectionFactory
+module.exports = () => connectionFactory
